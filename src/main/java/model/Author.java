@@ -1,5 +1,6 @@
 package model;
 
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
@@ -20,7 +21,7 @@ public class Author {
 	private String first_name;
 	private String last_name;
 	@ManyToMany(mappedBy = "authors")
-	private Set<Book> books;
+	private Set<Book> books=new HashSet<>();
 
 	public Author() {
 		super();

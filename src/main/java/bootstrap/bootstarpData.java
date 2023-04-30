@@ -30,6 +30,16 @@ public class bootstarpData implements CommandLineRunner{
 		authorrepo.save(ismail);
 		bookrepo.save(bkk);
 		
+		Author skr = new Author("hello","skr");
+		Book bok = new Book("ddd","5646");
+		skr.getBooks().add(bok);
+		bok.getAuthors().add(skr);
+		
+		authorrepo.save(skr);
+		bookrepo.save(bok);
+		System.out.println("bootstrap");
+		System.out.println("number of books"+bookrepo.count());
+		
 	}
 
 }

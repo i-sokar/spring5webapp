@@ -4,21 +4,25 @@ import org.springframework.boot.CommandLineRunner;
 
 import model.Author;
 import model.Book;
+import model.Publisher;
 import repos.AuthorRepo;
 import repos.BookRepo;
+import repos.PublisherRepo;
 
 public class bootstarpData implements CommandLineRunner{
 
 
 	private final AuthorRepo authorrepo;
 	private final BookRepo bookrepo;
+	private final PublisherRepo prepo;
 	
 
 	
-	public bootstarpData(AuthorRepo authorrepo, BookRepo bookrepo) {
+	public bootstarpData(AuthorRepo authorrepo, BookRepo bookrepo, PublisherRepo prepo) {
 		super();
 		this.authorrepo = authorrepo;
 		this.bookrepo = bookrepo;
+		this.prepo = prepo;
 	}
 	@Override
 	public void run(String... args) throws Exception {
@@ -39,6 +43,10 @@ public class bootstarpData implements CommandLineRunner{
 		bookrepo.save(bok);
 		System.out.println("bootstrap");
 		System.out.println("number of books"+bookrepo.count());
+		Publisher pp = new Publisher( "ismail sokar", "maadi ", "cairo", "cairo", "545664");
+		prepo.save(pp);
+		System.out.println(pp.toString());
+		
 		
 	}
 

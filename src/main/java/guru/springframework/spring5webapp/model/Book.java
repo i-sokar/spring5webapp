@@ -99,4 +99,7 @@ public class Book {
 		this.pulisher = pulisher;
 	}
 
+	public void setPublisher(Publisher publisher) {
+		this.pulisher=publisher;
+	}
 }

@@ -25,13 +25,9 @@ public class Publisher {
 	@OneToMany
 	@JoinColumn(name="publisher_id")
 	private Set<Book> books= new HashSet<>();
-	public Publisher( String name, String address_1, String city, String state, String zip) {
+	public Publisher( ) {
 		super();
-		this.name = name;
-		this.address_1 = address_1;
-		this.city = city;
-		this.state = state;
-		this.zip = zip;
+
 	}
 	public int getId() {
 		return id;

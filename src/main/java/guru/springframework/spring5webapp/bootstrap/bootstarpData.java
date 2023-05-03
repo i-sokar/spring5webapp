@@ -8,55 +8,62 @@ import guru.springframework.spring5webapp.model.Publisher;
 import guru.springframework.spring5webapp.repos.AuthorRepo;
 import guru.springframework.spring5webapp.repos.BookRepo;
 import guru.springframework.spring5webapp.repos.PublisherRepo;
+import org.springframework.stereotype.Component;
 
+@Component
 public class bootstarpData implements CommandLineRunner{
 
 
-	private final AuthorRepo authorrepo;
-	private final BookRepo bookrepo;
-	private final PublisherRepo prepo;
-	
+	private final AuthorRepo authorRepository;
+	private final BookRepo bookRepository;
+	private final PublisherRepo publisherRepository;
 
-	
-	public bootstarpData(AuthorRepo authorrepo, BookRepo bookrepo, PublisherRepo prepo) {
-		super();
-		this.authorrepo = authorrepo;
-		this.bookrepo = bookrepo;
-		this.prepo = prepo;
+	public bootstarpData(AuthorRepo authorRepository, BookRepo bookRepository, PublisherRepo publisherRepository) {
+		this.authorRepository = authorRepository;
+		this.bookRepository = bookRepository;
+		this.publisherRepository = publisherRepository;
 	}
+
 	@Override
 	public void run(String... args) throws Exception {
-		// TODO Auto-generated method stub
-		
-		System.out.println("hello");
-		Author ismail= new Author("ismail","sokar");
-		Book bkk= new Book("hello", "21651");
-		ismail.getBooks().add(bkk);
-		bkk.getAuthors().add(ismail);
-		authorrepo.save(ismail);
-		bookrepo.save(bkk);
-		
-		Author skr = new Author("hello","skr");
-		Book bok = new Book("ddd","5646");
-		skr.getBooks().add(bok);
-		bok.getAuthors().add(skr);
-		
-		authorrepo.save(skr);
-		bookrepo.save(bok);
-		System.out.println("bootstrap");
-		System.out.println("number of books"+bookrepo.count());
-		Publisher pp = new Publisher( "ismail sokar", "maadi ", "cairo", "cairo", "545664");
-		prepo.save(pp);
-		System.out.println(pp.toString());
-		
-		bkk.setPulisher(pp);
-		pp.getBooks().add(bok);
-		prepo.save(pp);
-		bok.setPulisher(pp);
-		pp.getBooks().add(bkk);
-		prepo.save(pp);
-		System.out.println(prepo.count());
-		
+
+		System.out.println("Started in Bootstrap");
+
+		Publisher publisher = new Publisher();
+		publisher.setName("SFG Publishing");
+		publisher.setCity("St Petersburg");
+		publisher.setState("FL");
+
+		publisherRepository.save(publisher);
+
+		System.out.println("Publisher Count: " + publisherRepository.count());
+
+		Author eric = new Author("Eric", "Evans");
+		Book ddd = new Book("Domain Driven Design", "123123");
+		eric.getBooks().add(ddd);
+		ddd.getAuthors().add(eric);
+
+		ddd.setPublisher(publisher);
+		publisher.getBooks().add(ddd);
+
+		authorRepository.save(eric);
+		bookRepository.save(ddd);
+		publisherRepository.save(publisher);
+
+		Author rod = new Author("Rod", "Johnson");
+		Book noEJB = new Book("J2EE Development without EJB", "3939459459");
+		rod.getBooks().add(noEJB);
+		noEJB.getAuthors().add(rod);
+
+		noEJB.setPublisher(publisher);
+		publisher.getBooks().add(noEJB);
+
+		authorRepository.save(rod);
+		bookRepository.save(noEJB);
+		publisherRepository.save(publisher);
+
+		System.out.println("Number of Books: " + bookRepository.count());
+		System.out.println("Publisher Number of Books: " + publisher.getBooks().size());
 	}
 
 }

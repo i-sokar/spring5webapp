@@ -4,6 +4,6 @@ import org.springframework.data.repository.CrudRepository;
 
 import guru.springframework.spring5webapp.model.Book;
 
-public interface BookRepo extends CrudRepository<Book, Long> {
+public interface BookRepository extends CrudRepository<Book, Long> {
 
 }

@@ -21,7 +21,7 @@ public class Book {
 	private String isbn;
 	private String title;
 	@ManyToOne
-	private Publisher pulisher;
+	private Publisher publisher;
 	@ManyToMany
 	@JoinTable(name = "author_book", joinColumns = @JoinColumn(name = "book_id"), inverseJoinColumns = @JoinColumn(name = "author_id"))
 	private Set<Author> authors=new HashSet<>();
@@ -71,8 +71,13 @@ public class Book {
 
 	@Override
 	public String toString() {
-		return "Book [id=" + id + ", isbn=" + isbn + ", title=" + title + ", authors=" + authors + "]";
+		return "Book{" +
+				"id=" + id +
+				", isbn='" + isbn + '\'' +
+				", title='" + title + '\'' +
+				'}';
 	}
+
 
 	@Override
 	public int hashCode() {
@@ -92,14 +97,14 @@ public class Book {
 	}
 
 	public Publisher getPulisher() {
-		return pulisher;
+		return publisher;
 	}
 
 	public void setPulisher(Publisher pulisher) {
-		this.pulisher = pulisher;
+		this.publisher = pulisher;
 	}
 
 	public void setPublisher(Publisher publisher) {
-		this.pulisher=publisher;
+		this.publisher=publisher;
 	}
 }
